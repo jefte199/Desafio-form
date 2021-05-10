@@ -5,8 +5,8 @@
 <p align="center">Esse é um desafio para o programa de estágio Helpper.</p>
 
 <br/>
-Desafio
-=================
+
+# Desafio
 
 <!--ts-->
   * Formulário de Cadastro de clientes contendo
@@ -24,3 +24,17 @@ Desafio
   * Exclusão de algum item da lista
 
 <!--te-->
+
+## Formulário de Cadastro
+
+<h1 align="center"><img src="./screens/printscreen01.jpg" alt="print screen"></h1>
+
+## Listagem
+
+<h1 align="center"><img src="./screens/printscreen02.jpg" alt="print screen"></h1>
+
+## Exclusão
+
+<h1 align="center"><img src="./screens/printscreen03.jpg" alt="print screen"></h1>
+
+<p align="center">A api usa o cpf para diferenciar cada form.</p>
