@@ -78,6 +78,25 @@ server.post('/form', (req, res) => {
 
 });
 
+server.delete('/form/:id_cpf_cnpj', (req, res) => {
+  const cpf_cnpj_delete = req.params.id_cpf_cnpj;
+
+  CreateIdForm.deleteOne({
+    cpf_cnpj_f: `${cpf_cnpj_delete}`
+  }).then((result) => {
+    if (!result){
+      res.status(400).json({ error: 'fails: User not exists.' });
+    }else {
+      res.json({
+        result: `form deleted - cpf/cnpj ${cpf_cnpj_delete}`
+      });
+    }
+  }).catch((err) => {
+    console.log("ERROR: ",err);
+  });
+
+});
+
 // Server PORT 
 
 const port = 3333;
