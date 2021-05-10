@@ -24,6 +24,22 @@ server.use(express.json());
 // ROUTES
 server.get('/', (req, res) => res.json({ msg: 'Welcome API: form' }));
 
+server.get('/form', (req, res) => {
+  // search forms in mongodb
+  CreateIdForm.find().then((result) => {
+    if (result) {
+        res.json({
+          result: result
+        });
+    } else {
+      res.status(400).json({ error: 'fails.' });
+    }
+  }).catch((err) => {
+    console.log("ERROR: ", err);
+  });
+
+});
+
 server.post('/form', (req, res) => {
   const { name, email, cpf_cnpj, teleph, zip_code, logradouro, number, bairro, city, state } = req.body;
 
@@ -33,7 +49,7 @@ server.post('/form', (req, res) => {
   }).then((result) => {
     if (!result) {
       //Create form
-      const new_form = new CreateIdForm({
+      new CreateIdForm({
         name_f: name, 
         email_f: email, 
         cpf_cnpj_f: cpf_cnpj, 
@@ -46,11 +62,13 @@ server.post('/form', (req, res) => {
         state_f: state
       }).save().then((result) => {
         console.log('OK, Form add');
-      }).catch((err) => {
+
+        res.json({
+          result: `created new form ${name}`
+        });
+        }).catch((err) => {
         console.log("ERROR: ", err);
       });
-
-      res.json(new_form);
     } else {
       res.status(400).json({ error: 'fails: User already exists.' });
     }
@@ -59,6 +77,8 @@ server.post('/form', (req, res) => {
   });
 
 });
+
+// Server PORT 
 
 const port = 3333;
 
